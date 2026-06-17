@@ -1,6 +1,6 @@
 -- ============================================================
 -- Movie Review System - Sample Data
--- Author: Ravi (Member 1)
+-- Author: samhita (Member 1)
 -- ============================================================
 
 USE movie_review_db;
