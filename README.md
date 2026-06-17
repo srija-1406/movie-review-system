@@ -9,9 +9,9 @@ Users can browse movies, search by genre, and submit/edit their own reviews and 
 
 | Member | Role | Module |
 |--------|------|--------|
-| **Ravi** | Member 1 | Database design, schema, movies module |
-| **Sneha** | Member 2 | Authentication, UI/frontend, app config |
-| **Arjun** | Member 3 | Reviews, ratings, profile module |
+| **samhita** | Member 1 | Database design, schema, movies module |
+| **Srija** | Member 2 | Authentication, UI/frontend, app config |
+| **srujana** | Member 3 | Reviews, ratings, profile module |
 
 ---
 
