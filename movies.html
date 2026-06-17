@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Movies — CineReview{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="page-title mb-4">All Movies</h1>
+
+  <!-- Filter Bar -->
+  <form method="GET" class="filter-bar d-flex flex-wrap gap-2 mb-5">
+    <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search title..." style="max-width:260px">
+    <select name="genre" class="form-select" style="max-width:180px">
+      <option value="">All Genres</option>
+      {% for g in genres %}
+        <option value="{{ g.genre_id }}" {% if selected_genre == g.genre_id|string %}selected{% endif %}>
+          {{ g.genre_name }}
+        </option>
+      {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-accent">Filter</button>
+    {% if query or selected_genre %}
+      <a href="{{ url_for('movies') }}" class="btn btn-outline-secondary">Clear</a>
+    {% endif %}
+  </form>
+
+  {% if movies %}
+  <div class="row g-4">
+    {% for movie in movies %}
+    <div class="col-6 col-md-4 col-lg-3">
+      <a href="{{ url_for('movie_detail', movie_id=movie.movie_id) }}" class="movie-card-link">
+        <div class="movie-card">
+          <div class="movie-poster-placeholder">
+            <span class="movie-initial">{{ movie.title[0] }}</span>
+          </div>
+          <div class="movie-info">
+            <div class="movie-rating">
+              <i class="bi bi-star-fill text-warning"></i>
+              {{ movie.avg_rating if movie.avg_rating else '—' }}
+            </div>
+            <h5 class="movie-title-text">{{ movie.title }}</h5>
+            <small class="text-muted">{{ movie.release_year }} &bull; {{ movie.language }}</small>
+            {% if movie.director_name %}
+              <div class="director-name">Dir. {{ movie.director_name }}</div>
+            {% endif %}
+            <div class="review-count">{{ movie.total_reviews }} review{{ 's' if movie.total_reviews != 1 }}</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+    <div class="empty-state text-center py-5">
+      <i class="bi bi-film display-1 text-muted"></i>
+      <p class="mt-3 text-muted">No movies found. Try a different search.</p>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

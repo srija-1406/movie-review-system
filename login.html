@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Login — CineReview{% endblock %}
+{% block content %}
+<div class="container py-5 d-flex justify-content-center">
+  <div class="auth-box">
+    <h2 class="auth-title mb-4">Welcome Back</h2>
+    <form method="POST">
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" name="username" class="form-control" required autofocus>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-accent w-100 py-2">Login</button>
+    </form>
+    <p class="text-center mt-3 text-muted">
+      Don't have an account? <a href="{{ url_for('register') }}">Sign Up</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}CineReview — Discover & Review Movies{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-content text-center">
+      <p class="hero-eyebrow">Your Voice. Your Cinema.</p>
+      <h1 class="hero-title">CINEREVIEW</h1>
+      <p class="hero-subtitle">Discover movies. Share honest reviews. Find your next watch.</p>
+      <form action="{{ url_for('movies') }}" method="GET" class="hero-search d-flex gap-2 justify-content-center mt-4">
+        <input type="text" name="q" class="form-control search-input" placeholder="Search movies..." style="max-width:400px">
+        <button type="submit" class="btn btn-accent px-4">Search</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Top Movies -->
+<section class="section-movies py-5">
+  <div class="container">
+    <div class="section-header d-flex justify-content-between align-items-center mb-4">
+      <h2 class="section-title">Top Rated</h2>
+      <a href="{{ url_for('movies') }}" class="btn btn-outline-light btn-sm">View All →</a>
+    </div>
+    <div class="row g-4">
+      {% for movie in top_movies %}
+      <div class="col-6 col-md-4 col-lg-3">
+        <a href="{{ url_for('movie_detail', movie_id=movie.movie_id) }}" class="movie-card-link">
+          <div class="movie-card">
+            <div class="movie-poster-placeholder">
+              <span class="movie-initial">{{ movie.title[0] }}</span>
+            </div>
+            <div class="movie-info">
+              <div class="movie-rating">
+                <i class="bi bi-star-fill text-warning"></i>
+                {{ movie.avg_rating if movie.avg_rating else '—' }}
+              </div>
+              <h5 class="movie-title-text">{{ movie.title }}</h5>
+              <small class="text-muted">{{ movie.release_year }} &bull; {{ movie.language }}</small>
+              {% if movie.total_reviews %}
+                <div class="review-count">{{ movie.total_reviews }} review{{ 's' if movie.total_reviews != 1 }}</div>
+              {% else %}
+                <div class="review-count text-muted">No reviews yet</div>
+              {% endif %}
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Browse by Genre -->
+<section class="genre-section py-5">
+  <div class="container">
+    <h2 class="section-title mb-4">Browse by Genre</h2>
+    <div class="d-flex flex-wrap gap-2">
+      {% for genre in genres %}
+      <a href="{{ url_for('movies', genre=genre.genre_id) }}" class="btn btn-genre">
+        {{ genre.genre_name }}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
