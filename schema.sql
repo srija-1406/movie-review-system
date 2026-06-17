@@ -1,6 +1,6 @@
 -- ============================================================
 -- Movie Review System - Database Schema
--- Author: Ravi (Member 1)
+-- Author: samhita (Member 1)
 -- Module: Database Design & Movies Table
 -- ============================================================
 
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS movie_genres (
 
 -- -------------------------
 -- Table: users
--- Author: Sneha (Member 2)
+-- Author: Srija (Member 2)
 -- -------------------------
 CREATE TABLE IF NOT EXISTS users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- -------------------------
 -- Table: reviews
--- Author: Arjun (Member 3)
+-- Author: srujana (Member 3)
 -- -------------------------
 CREATE TABLE IF NOT EXISTS reviews (
     review_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS reviews (
 
 -- -------------------------
 -- View: movie average ratings
--- Author: Arjun (Member 3)
+-- Author: srujana (Member 3)
 -- -------------------------
 CREATE OR REPLACE VIEW movie_ratings_summary AS
 SELECT
@@ -103,7 +103,7 @@ GROUP BY m.movie_id, m.title, m.release_year, m.language, d.name;
 
 -- -------------------------
 -- Trigger: prevent duplicate review update spam
--- Author: Arjun (Member 3)
+-- Author: srujana (Member 3)
 -- -------------------------
 DELIMITER $$
 CREATE TRIGGER before_review_insert
